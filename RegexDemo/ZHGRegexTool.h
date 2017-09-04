@@ -1,6 +1,5 @@
 //
-//  RegexTool.h
-//  MD5文件校验
+//  ZHGRegexTool
 //
 //  Created by DDing_Work on 2017/9/4.
 //  Copyright © 2017年 DDing_Work. All rights reserved.
