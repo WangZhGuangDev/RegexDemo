@@ -28,14 +28,18 @@
     NSLog(@"这是输入的文本：%@",text);
     
     BOOL isMatch = [ZHGRegexTool regexWithPasswordComplex:text];
-    
-    isMatch ? NSLog(@"格式正确") : NSLog(@"格式错误");
+    [self alertMessage:isMatch ? @"格式正确" : @"格式错误"];
+//    isMatch ? NSLog(@"格式正确") : NSLog(@"格式错误");
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)alertMessage:(NSString *)message {
+    [self.view endEditing:YES];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:(UIAlertControllerStyleAlert)];
+    [self presentViewController:alert animated:YES completion:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        });
+    }];
 }
-
 
 @end
