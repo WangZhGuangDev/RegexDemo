@@ -37,10 +37,13 @@
 +(BOOL)regexWithPasswordComplex:(NSString *)password {
     // 类似QQ 支持数字、字母、符号6-20位,必须包含其中至少两种
     NSString *passWordRegex = @"^(?=.*[a-zA-Z0-9].*)(?=.*[a-zA-Z\\W].*)(?=.*[0-9\\W].*).{6,20}$";
-    
+    NSString *passWordRegex1 = @"^([A-Za-z0-9]){6,20}$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passWordRegex];
+    NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", passWordRegex1];
+
     BOOL isMatch = [predicate evaluateWithObject:password];
-    return isMatch;
+    BOOL isMatch1 = [predicate1 evaluateWithObject:password];
+    return isMatch || isMatch1;
 }
 
 /**
@@ -66,6 +69,7 @@
 +(BOOL)regexWithEmailAddress:(NSString *)email {
   
 //    NSString *emailRegex = @"^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$";
+    //                       @"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
